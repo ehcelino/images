@@ -1,0 +1,33 @@
+<div id="dropzone" ondragover="allowDrop(event)">
+    Drop your image here
+  </div>
+<%= form_with(model: @image, local: true, html: { id: "myform", style: "display:none" }) do |form| %>
+  
+  <%= form.file_field :image, id: "input-field" %>
+  <%= form.submit "Submit" %>
+<% end %>
+
+<script>
+function allowDrop(event) {
+  event.preventDefault();
+}
+  const dropzone = document.getElementById("dropzone");
+  const myform = document.getElementById("myform");
+  dropzone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files;
+    const input = document.getElementById("input-field");
+    input.files = file;
+    myform.submit();
+    
+  const file2 = event.dataTransfer.files[0];
+  const reader = new FileReader();
+  reader.readAsDataURL(file2);
+  reader.onload = function() {
+    const dataUrl = reader.result;
+    const img = document.createElement('img');
+    img.src = dataUrl;
+    dropzone.appendChild(img);
+    }
+  });
+</script>
