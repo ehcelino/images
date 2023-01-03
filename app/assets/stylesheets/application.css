@@ -14,11 +14,44 @@
  *= require_self
  */
 
- #dropzone {
+#dropzone {
   border: 2px dashed #ccc;
-  padding: 20px;
-  /* width: 40%;
-  height: 300px; */
+  /* width: 40%; */
+  /* height: 300px; */
   text-align: center;
   color: #ccc;
- }
+  padding: 70px 0;
+}
+
+#dropzone-message {
+  position: absolute;
+  width: 300px;
+  left: calc(50% - 150px);
+  text-align: center;
+  color: rgb(173, 173, 173);
+  z-index: -1;
+}
+
+#input-field {
+  display:none;
+}
+
+/* .out {
+  display: flex;
+  flex-direction: row;
+  margin: 50px;
+} */
+
+.in {
+  margin: 20px;
+}
+
+.image {
+  float:right;
+  width: fit-content;
+  margin: 10px;
+}
+
+body {
+  margin: 20px;
+}

@@ -1,0 +1,16 @@
+<% @articles.each do |a| %>
+  <% time = a.created_at.time.in_time_zone("Brasilia") %>
+  <% n_time = time.strftime("%d/%m/%Y %H:%M") %>
+  <div class="article">
+    <%= link_to a.title, a, class: "article-title" %>
+    <br />
+    <i> Por <%= a.user.username %> - <%= n_time %> </i>
+    <br />
+    <i> Email <%= a.user.email %> </i>
+    <br />
+    <br />
+    <%= truncate(a.body, length: 350) %>
+    <%= link_to 'Ver artigo completo', a %>
+    <br />
+  </div>
+<% end %>

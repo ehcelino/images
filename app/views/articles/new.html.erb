@@ -1,0 +1,50 @@
+<dl>
+<%= form_with model: @article, local:true, method: "post", id: "myform" do |f| %>
+  <dt>
+    <%= f.text_field :title, placeholder: 'Enter article title here' %>
+  </dt>
+  <dt>
+    <%= f.text_area :body, placeholder: "Enter article content here", size: "70x20" %>
+  </dt>
+  <dt>
+    <%= f.file_field :image, id: "input-field" %>
+  </dt>
+  <dt>
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    <%= f.label 'Usuário: ' + current_user.username %>
+    </dt>
+  <dt>
+    <%= f.submit "Post" %>
+  </dt>
+<% end %>
+</dl>
+
+<div id="dropzone" ondragover="allowDrop(event)">
+  <div id="dropzone-message">
+    Arraste apenas uma imagem aqui
+  </div>
+</div>
+
+<script>
+function allowDrop(event) {
+  event.preventDefault();
+}
+  const dropzone = document.getElementById("dropzone");
+  const myform = document.getElementById("myform");
+  dropzone.addEventListener("drop", (event) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files;
+    const input = document.getElementById("input-field");
+    input.files = file;
+    
+  const file2 = event.dataTransfer.files[0];
+  const reader = new FileReader();
+  reader.readAsDataURL(file2);
+  reader.onload = function() {
+    const dataUrl = reader.result;
+    const img = document.createElement('img');
+    img.src = dataUrl;
+    dropzone.appendChild(img);
+    }
+  });
+</script>
