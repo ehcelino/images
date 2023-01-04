@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Sign Up</h1>
+  <h1>Inscrição</h1>
 
 
   <% if flash[:alert] %>
@@ -27,19 +27,19 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :username %><br />
+      <%= f.label "Nome de usuário" %><br />
       <%= f.text_field :username %>
     </div>
     <div class="field">
-      <%= f.label :email %><br />
+      <%= f.label "Email" %><br />
       <%= f.text_field :email %>
     </div>
     <div class="field">
-      <%= f.label :password %><br />
+      <%= f.label "Senha" %><br />
       <%= f.password_field :password, id: "password" %>
     </div>
     <div class="field">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label "Confirmação da senha" %><br />
       <%= f.password_field :password_confirmation, id: "password_confirmation" %>
     </div>
     <div class="actions"><%= f.submit "Sign Up", id: "submit" %></div>

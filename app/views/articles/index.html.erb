@@ -1,24 +1,30 @@
+<div class="container">
+<h1>Artigos</h1>
+<br />
 <% @articles.each do |a| %>
   <% time = a.created_at.time.in_time_zone("Brasilia") %>
   <% n_time = time.strftime("%d/%m/%Y %H:%M") %>
-  <div class="container">
-    <br />
-    <h1><%= link_to a.title, a, class: "article-title" %></h1>
-    <i> Por <%= a.user.username %> - <%= n_time %> </i>
-    <br />
-    <i> Email <%= a.user.email %> </i>
-    <br />
-    <% images = a.content.body.attachments.select { |attachment| attachment} %>
-    <% if images.count > 0 %>
-      <% images.each do |image| %>
-        <%= image_tag image, alt: "Image Alt Text", size: "100x100" %>
-      <% end %>
-    <% end %>
-    <br />
-    <% rt_wo_attachments = a.content.body.to_plain_text %>
-    <%= truncate(rt_wo_attachments, length: 300) %>
-    <%= link_to 'Ver artigo', a %>
-  </div>
+    <div class="row g0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+      <div class="col p3 d-flex flex-column position-static">
+        <h1><%= link_to a.title, a, class: "article-title" %></h1>
+        <i> Por <%= a.user.username %> - <%= n_time %> </i>
+        <br />
+        <i> Email <%= a.user.email %> </i>
+        <br />
+        <% rt_wo_attachments = a.content.body.to_plain_text %>
+        <%= truncate(rt_wo_attachments, length: 300) %>
+        <%= link_to 'Ver artigo', a %>
+      </div>
+      <div class="col-auto d-none d-lg-block" style="padding: 30px 0; margin-right: 10px;">
+        <% images = a.content.body.attachments.select { |attachment| attachment} %>
+        <% if images.count > 0 %>
+          <% images.each do |image| %>
+            <%= image_tag image, alt: "Image Alt Text", size: "100", class: "resize" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
 <% end %>
+</div>
 <br />
 <br />

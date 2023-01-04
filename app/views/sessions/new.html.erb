@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Log In</h1>
+  <h1>Entrar</h1>
 
 
   <% if flash[:alert] %>
@@ -16,13 +16,13 @@
 
   <%= form_tag sessions_path do %>
     <div class="field">
-      <%= label_tag :username %><br />
+      <%= label_tag 'Usuário' %><br />
       <%= text_field_tag :username, params[:username] %>
     </div>
     <div class="field">
-      <%= label_tag :password %><br />
+      <%= label_tag "Senha" %><br />
       <%= password_field_tag :password %>
     </div>
-    <div class="actions"><%= submit_tag "Log In" %></div>
+    <div class="actions"><%= submit_tag "Entrar" %></div>
   <% end %>
 </div>
