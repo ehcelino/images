@@ -19,17 +19,22 @@
 <% end %>
 </dl>
 
-<div id="dropzone" ondragover="allowDrop(event)">
+<div id="dropzone">
   <div id="dropzone-message">
     Arraste apenas uma imagem aqui
   </div>
 </div>
 
 <script>
-function allowDrop(event) {
-  event.preventDefault();
-}
+
   const dropzone = document.getElementById("dropzone");
+  dropzone.addEventListener("dragenter", function(event) {
+    event.preventDefault();
+  });
+  
+  dropzone.addEventListener("dragover", function(event) {
+    event.preventDefault();
+  });
   const myform = document.getElementById("myform");
   dropzone.addEventListener("drop", (event) => {
     event.preventDefault();
