@@ -4,7 +4,8 @@
     <%= f.text_field :title, placeholder: 'Enter article title here' %>
   </dt>
   <dt>
-    <%= f.text_area :body, placeholder: "Enter article content here", size: "70x20" %>
+    <%= f.label :content %>
+    <%= f.rich_text_area :content %>
   </dt>
   <dt>
     <%= f.file_field :image, id: "input-field" %>

@@ -15,10 +15,9 @@ class ArticlesController < ApplicationController
 
 
   def create
-    @article = Article.new(title: params[:article][:title],
-                     body: params[:article][:body],
-                     user_id: params[:article][:user_id])
+    @article = Article.create! params.require(:article).permit(:title, :user_id, :image, :content)
     @article.image.attach(params[:article][:image])
+    # @article.content.attach(params[:article][:content])
       if @article.save
         return redirect_to article_path(@article.id)
       end
@@ -27,6 +26,6 @@ class ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:title, :body, :user_id, :image)
+    params.require(:article).permit(:title, :user_id, :image, :content)
   end
 end
