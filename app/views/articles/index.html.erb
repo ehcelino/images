@@ -1,18 +1,24 @@
 <% @articles.each do |a| %>
   <% time = a.created_at.time.in_time_zone("Brasilia") %>
   <% n_time = time.strftime("%d/%m/%Y %H:%M") %>
-  <div class="article">
-    <%= link_to a.title, a, class: "article-title" %>
+  <div class="container">
     <br />
+    <h1><%= link_to a.title, a, class: "article-title" %></h1>
     <i> Por <%= a.user.username %> - <%= n_time %> </i>
     <br />
     <i> Email <%= a.user.email %> </i>
     <br />
+    <% images = a.content.body.attachments.select { |attachment| attachment} %>
+    <% if images.count > 0 %>
+      <% images.each do |image| %>
+        <%= image_tag image, alt: "Image Alt Text", size: "100x100" %>
+      <% end %>
+    <% end %>
     <br />
-    <%= truncate(a.body, length: 350) %>
-    <%= link_to 'Ver artigo completo', a %>
-    <br />
-    <br />
-    <%= a.content %>
+    <% rt_wo_attachments = a.content.body.to_plain_text %>
+    <%= truncate(rt_wo_attachments, length: 300) %>
+    <%= link_to 'Ver artigo', a %>
   </div>
 <% end %>
+<br />
+<br />

@@ -1,51 +1,51 @@
-<dl>
-<%= form_with model: @article, local:true, method: "post", id: "myform" do |f| %>
-  <dt>
-    <%= f.text_field :title, placeholder: 'Enter article title here' %>
-  </dt>
-  <dt>
-    <%= f.label :content %>
-    <%= f.rich_text_area :content %>
-  </dt>
-  <dt>
-    <%= f.file_field :image, id: "input-field" %>
-  </dt>
-  <dt>
-    <%= f.hidden_field :user_id, value: current_user.id %>
-    <%= f.label 'Usuário: ' + current_user.username %>
-    </dt>
-  <dt>
-    <%= f.submit "Post" %>
-  </dt>
-<% end %>
-</dl>
+<div class="around">
+  <div class="internal">
+  <h3>Novo artigo</h3>
 
-<div id="dropzone" ondragover="allowDrop(event)">
-  <div id="dropzone-message">
-    Arraste apenas uma imagem aqui
+  <div style="text-align: right;"><i class="bi bi-question-circle" id="toggle-link"></i></div>
+  <div id="help" class="hidden" style="width: 800px;">
+    <p>Primeiro preencha o título de seu artigo. O autor será atribuído automaticamente de acordo com seu usuário.</p>
+    <p>No editor, os botões significam (da esquerda para a direita):</p>
+    <p>Negrito - Itálico - Riscado - Link - Cabeçalho - Citação - Código - Lista - Lista numérica - 
+    Diminuir nível - Aumentar nível - Anexar arquivo - Desfazer - Refazer</p>
+    <p>Para inserir uma imagem você pode arrastá-la para dentro do editor.</p>
+
+  </div>
+  
+    <dl>
+    <%= form_with model: @article, local:true, method: "post", id: "myform" do |f| %>
+      <dt>
+        <%= f.text_field :title, placeholder: 'Título', class: "title-field" %>
+      </dt>
+      <dt>
+      <br />
+        <div style="width: 800px;">
+          <% f.label :content %>
+          <%= f.rich_text_area :content, class: "rich-text-area" %>
+        </div>
+      </dt>
+      <dt>
+        <%= f.file_field :image, id: "input-field" %>
+      </dt>
+      <dt>
+        <%= f.hidden_field :user_id, value: current_user.id %>
+        <br />
+        <%= f.label 'Autor: ' + current_user.username %>
+        <br />
+        </dt>
+      <dt>
+        <%= f.submit "Post" %>
+      </dt>
+    <% end %>
+    </dl>
   </div>
 </div>
 
 <script>
-function allowDrop(event) {
-  event.preventDefault();
-}
-  const dropzone = document.getElementById("dropzone");
-  const myform = document.getElementById("myform");
-  dropzone.addEventListener("drop", (event) => {
+  const link = document.getElementById('toggle-link');
+  const div = document.getElementById('help');
+  link.addEventListener('click', () => {
     event.preventDefault();
-    const file = event.dataTransfer.files;
-    const input = document.getElementById("input-field");
-    input.files = file;
-    
-  const file2 = event.dataTransfer.files[0];
-  const reader = new FileReader();
-  reader.readAsDataURL(file2);
-  reader.onload = function() {
-    const dataUrl = reader.result;
-    const img = document.createElement('img');
-    img.src = dataUrl;
-    dropzone.appendChild(img);
-    }
+    div.classList.toggle('hidden');
   });
 </script>

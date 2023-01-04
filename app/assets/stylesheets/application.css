@@ -55,3 +55,25 @@
 body {
   margin: 20px;
 }
+
+.rich-text-area {
+  height: 500px;
+}
+
+.title-field {
+  width: 400px;
+}
+
+.around {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display:none;
+}
+
+#toggle-link {
+  cursor: pointer;
+}

@@ -1,50 +1,50 @@
+<div class="container">
+  <h1>Sign Up</h1>
 
-<h1>Sign Up</h1>
 
-
-<% if flash[:alert] %>
-  <div class="alert alert-warning">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
-
-<% if flash[:danger] %>
-  <script>
-    window.confirm("<%= flash[:danger] %>");
-  </script>
-<% end %>
-
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% @user.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+  <% if flash[:alert] %>
+    <div class="alert alert-warning">
+      <%= flash[:alert] %>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, id: "password" %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, id: "password_confirmation" %>
-  </div>
-  <div class="actions"><%= f.submit "Sign Up", id: "submit" %></div>
-<% end %>
+  <% if flash[:danger] %>
+    <script>
+      window.confirm("<%= flash[:danger] %>");
+    </script>
+  <% end %>
 
+  <%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :username %><br />
+      <%= f.text_field :username %>
+    </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, id: "password" %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, id: "password_confirmation" %>
+    </div>
+    <div class="actions"><%= f.submit "Sign Up", id: "submit" %></div>
+  <% end %>
+</div>
 
 <script>
   document.querySelector("#submit").addEventListener("click", function(event) {
