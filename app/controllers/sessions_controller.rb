@@ -6,8 +6,12 @@ class SessionsController < ApplicationController
     user = User.find_by(username: params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:notice] = "Logado com sucesso."
-      redirect_to root_url
+      flash[:alert] = "Logado com sucesso."
+      if params[:from_url]
+        redirect_to params[:from_url]
+      else
+        redirect_to root_url
+      end
     else
       flash[:alert] = "Usuário ou senha inválidos."
       # render :new
@@ -17,8 +21,8 @@ class SessionsController < ApplicationController
   
   def destroy
     session[:user_id] = nil
-    flash[:notice] = "Sessão terminada com sucesso."
-    redirect_to root_url
+    flash[:alert] = "Sessão terminada com sucesso."
+    redirect_to request.referer
   end
 
 end

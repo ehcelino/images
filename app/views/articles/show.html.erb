@@ -1,26 +1,31 @@
 
 <div class="container">
-<br />
-  <h1><%= @article.title %></h1>
-  <% time = @article.created_at.time.in_time_zone("Brasilia") %>
-  <% n_time = time.strftime("%d/%m/%Y %H:%M") %>
-  <i>Por <%= @article.user.username %>, <%= @article.user.email %> - <%= n_time %></i>
-  <div class="out">
-    <div>
+  <br /> 
+  <% flash.each do |key, value| %>
+    <div class="<%= key %> alert-warning" id="alert"><%= value %></div>
+  <% end %>
+  <div class="row g0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+    <h1><%= @article.title %></h1>
+    <% time = @article.created_at.time.in_time_zone("Brasilia") %>
+    <% n_time = time.strftime("%d/%m/%Y %H:%M") %>
+    <i>Por <%= @article.user.username %>, <%= @article.user.email %> - <%= n_time %></i>
+    <div class="out">
+      <div>
+        
+      </div>
       
+      <div class="image">
+        <% if @article.image.present? %>
+          <img src="<%= (url_for(@article.image)) %>">
+        <% end %>
+      </div>
+      <%= @article.content %>
     </div>
-    
-    <div class="image">
-      <% if @article.image.present? %>
-        <img src="<%= (url_for(@article.image)) %>">
-      <% end %>
-    </div>
-    <%= @article.content %>
-  </div>
 
-  <br />
-  <br />
-  <%= link_to "Voltar", :back %>
-  <br />
-  <br />
+    <br />
+    <br />
+    <%= link_to "Voltar", :back %>
+    <br />
+    <br />
   </div>
+</div>

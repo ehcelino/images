@@ -57,7 +57,7 @@ body {
 }
 
 .rich-text-area {
-  height: 500px;
+  height: auto;
 }
 
 .title-field {
@@ -83,4 +83,20 @@ img.resize {
   width: auto; 
   max-width: 150px; 
   max-height: 150px;
+}
+
+.featured {
+  background-color: rgb(33, 37, 41);
+  color: white;
+  margin: 20px;
+  padding: 20px;
+
+}
+
+.featured-title {
+  width: 450px;
+}
+
+.featured-title h2 {
+  font-size: 50px;
 }
