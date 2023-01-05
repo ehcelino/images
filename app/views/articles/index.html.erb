@@ -1,3 +1,4 @@
+<% total_pages = (Article.count / @per_page) + (Article.count % @per_page) %>
 <div class="container">
 <br />
 <div style="text-align:center;"><h1>Artigos</h1></div>
@@ -14,11 +15,10 @@
 
   <div class="row g-5">
   <div class="col-md-8">
-
 <% @articles.each_with_index do |a, idx| %>
   <% time = a.created_at.time.in_time_zone("Brasilia") %>
   <% n_time = time.strftime("%d/%m/%Y %H:%M") %>
-    <% if idx == 0 %>
+    <% if idx == 0 && @actual == 1 %>
       <div class="featured row g0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col p3 d-flex flex-column position-static">
         <i>Em destaque</i>
@@ -66,22 +66,15 @@
 </div>
 
 
-<div class="col-md-4">
-  <div class="position-sticky" style="top:2rem;"
-    <div class="p4 mb3 bg-light rounded">
-    <div class="card">
-    <div class="card-header">
-      Artigos por mês
-    <ul class="list-group list-group-flush">
-      <% @articles.group_by { |p| p.created_at.strftime("%B %Y") }.each do |month, articles| %>
-        <li class="list-group-item"><%= link_to month, articles_by_month_path(month: month) %></li>
-      <% end %>
-    </ul>
-    </div>
-    </div>
-    </div>
-  </div>
-</div>
+<%= render "right" %>
+
+<% (1..total_pages).each do |page| %>
+  <% if page == 1 %>
+    <%= link_to page, root_path %>
+  <% else %>
+    <%= link_to page, root_path(page: page) %>
+  <% end %>
+<% end %>
 
 </div>
 

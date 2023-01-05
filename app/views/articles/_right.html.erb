@@ -1,0 +1,31 @@
+<div class="col-md-4">
+
+  <div class="position-sticky" style="top:2rem;"
+
+    <div class="p4 mb3 bg-light rounded" style="margin-bottom: 20px;">
+      <h4 class="fst-italic">Artigos!</h4>
+      <p class="mb-0">
+      Aqui vai a descrição do site e etc, mas eu não quero escrever nada sério agora.
+      </p>
+    </div>
+  
+    <div class="p4 mb3 bg-light rounded" style="margin-bottom: 20px; margin-top: 20px;">
+      <div class="card">
+        <div class="card-header">
+          Artigos por mês
+          <ul class="list-group list-group-flush">
+            <% @articles.group_by { |p| p.created_at.strftime("%B %Y") }.each do |month, articles| %>
+            <li class="list-group-item"><%= link_to month, articles_by_month_path(month: month) %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <%= link_to "voltar", :back %>
+
+
+    
+  </div>
+</div>

@@ -10,7 +10,12 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.all.order(created_at: :desc)
+    page = params[:page] || 1
+    @actual = page
+    @per_page = 2
+    offset = (page.to_i - 1) * @per_page
+    @articles = Article.offset(offset).limit(@per_page).order(created_at: :desc)
+    # @articles = Article.all.order(created_at: :desc)
   end
 
 
@@ -26,7 +31,7 @@ class ArticlesController < ApplicationController
 
     def by_month
       date = Date.parse(params[:month])
-      @articles = Article.where(created_at: date..date.end_of_month)
+      @articles = Article.where(created_at: date..date.end_of_month).order(created_at: :desc)
     end
     
 

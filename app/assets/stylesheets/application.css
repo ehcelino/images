@@ -93,6 +93,11 @@ img.resize {
 
 }
 
+.featured a {
+  color: white;
+  font-size: larger;
+}
+
 .featured-title {
   width: 450px;
 }

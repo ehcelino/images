@@ -5,10 +5,14 @@
     <div class="<%= key %> alert-warning" id="alert"><%= value %></div>
   <% end %>
   <div class="row g0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-    <h1><%= @article.title %></h1>
+  <div style="background-color: #212529; color:white; height: 100px; text-align: center; padding: 20px 0; margin-botton: 15px;">  
+  <h1><%= @article.title %></h1>
+  </div>
     <% time = @article.created_at.time.in_time_zone("Brasilia") %>
     <% n_time = time.strftime("%d/%m/%Y %H:%M") %>
+  <div style="margin-top: 20px; margin-bottom: 20px;">
     <i>Por <%= @article.user.username %>, <%= @article.user.email %> - <%= n_time %></i>
+  </div>
     <div class="out">
       <div>
         
