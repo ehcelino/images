@@ -24,6 +24,12 @@ class ArticlesController < ApplicationController
     render :new
     end
 
+    def by_month
+      date = Date.parse(params[:month])
+      @articles = Article.where(created_at: date..date.end_of_month)
+    end
+    
+
   private
   def article_params
     params.require(:article).permit(:title, :user_id, :image, :content)
